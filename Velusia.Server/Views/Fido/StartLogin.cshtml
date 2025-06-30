@@ -1,0 +1,18 @@
+@model Velusia.Server.ViewModels.Fido.StartLogin
+@{
+    ViewData["Title"] = "Passwordless Login";
+}
+
+<h2>Login</h2>
+
+
+If you don't have an account, please @Html.ActionLink("register", "StartRegistration", "Fido", new Dictionary<string, object>() { { "returnUrl", Model.ReturnUrl } }).
+<form asp-action="StartLogin">
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" required />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    @Html.HiddenFor(x =>x.ReturnUrl)
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>

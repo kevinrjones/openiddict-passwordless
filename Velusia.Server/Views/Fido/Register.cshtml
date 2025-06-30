@@ -1,0 +1,16 @@
+@model Velusia.Server.ViewModels.Fido.Register
+@{
+    var fidoChallenge = Model.Challenge;
+    var returnUrl = Model.ReturnUrl;
+}
+
+<h2>Please use your authenticator</h2>
+
+<script src="~/js/fido.js"></script>
+
+<script>
+    register("@Html.Raw(fidoChallenge.Base64Challenge)", 
+        "@fidoChallenge.RelyingPartyId", 
+        "@Html.Raw(fidoChallenge.Base64UserHandle)", 
+        "@fidoChallenge.UserId", '/Fido/CompleteRegistration', "@returnUrl" )
+</script>

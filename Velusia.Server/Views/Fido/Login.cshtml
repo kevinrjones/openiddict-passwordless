@@ -1,0 +1,18 @@
+@using Newtonsoft.Json
+@model Velusia.Server.ViewModels.Fido.Login
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Please use your authenticator</h2>
+
+<script src="~/js/fido.js"></script>
+<script>
+    completeLogin("@Html.Raw(Model.Challenge.Base64Challenge)", 
+        "@Model.Challenge.RelyingPartyId", 
+        '@Html.Raw(JsonConvert.SerializeObject(Model.Challenge.Base64KeyIds))', 
+        '/Fido/FidoCompleteLogin', 
+        "@Html.Raw(@Model.ReturnUrl)")
+</script>
